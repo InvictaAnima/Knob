@@ -17,11 +17,14 @@ public class KnobView extends JComponent  {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		
-		g.setColor(Color.black);		
-		g.drawArc(25, 25, 120, 120, 0, value);
-		g.drawString(""+value, 72, 90);
-		
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, 400,300);
+		g.setColor(Color.BLACK);
+		g.fillArc(10, 0, 150, 150, 90, value);
+		g.setColor(Color.WHITE);
+		g.fillOval(40, 30, 90, 90);	
+		g.setColor(Color.BLACK);
+		g.drawString(""+ (-1) * value, 70, 80);
 	}	
 	
 	public void addKnobMouseWheelListener(MouseWheelListener  knobMouseWheelListener){	

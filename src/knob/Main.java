@@ -12,7 +12,7 @@ public class Main extends JFrame{
 	
 	public Main(){	
 		super("Knob");
-		setSize(400,300); //width,height
+		setSize(180,190); //width,height
 		setLocationRelativeTo(null); //centers the window		
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
