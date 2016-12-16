@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 public class Main extends JFrame{		
 	
 	private static final long serialVersionUID = 1L;
-	KnobView knobView = new KnobView();
+	KnobView knobView = new KnobView(0,0,150);
 	KnobModel knobModel = new KnobModel();
 	KnobController knobController =new KnobController(knobModel,knobView);
 	
