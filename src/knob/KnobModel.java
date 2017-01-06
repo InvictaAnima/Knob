@@ -10,6 +10,16 @@ public class KnobModel {
 
 	public void setValue(int value) {
 		this.value = value;
+	}
+
+	public void calculateByRotation(int rotation) {
+		
+		if (rotation > 0) {
+			value += 10;
+		} else {
+			value -= 10;
+		}
+		
 	}	
 	
 }

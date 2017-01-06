@@ -1,27 +1,38 @@
 package knob;
 
 
-import javax.swing.JFrame;
+import java.awt.BorderLayout;
+import java.awt.Container;
 
-public class Main extends JFrame{		
+import javax.swing.JFrame;
 	
-	private static final long serialVersionUID = 1L;
-	KnobView knobView = new KnobView(0,0,150);
+public class Main{	
+	
+	KnobView knobView = new KnobView(200);	
 	KnobModel knobModel = new KnobModel();
 	KnobController knobController =new KnobController(knobModel,knobView);
+		
 	
-	public Main(){	
-		super("Knob");
-		setSize(180,190); //width,height
-		setLocationRelativeTo(null); //centers the window		
-		setResizable(false);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-				
-		add(knobView);	
-		setVisible(true);
+	JFrame frame = new JFrame("Knob");
+	Container pane = frame.getContentPane();
+    
+	
+	public Main(){
+		KnobView knobView2 = new KnobView();		
+		knobController.register(knobView2);
+		
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		pane.setLayout(new BorderLayout()); 
+		pane.add(knobView2, BorderLayout.EAST);
+	    pane.add(knobView, BorderLayout.WEST);
+	    	    
+	    frame.pack();
+	    frame.setVisible(true);	    
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) {		
 		new Main();
 	}
 }
