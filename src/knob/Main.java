@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 	
 public class Main{	
 	
-	KnobView knobView = new KnobView(200);	
+	KnobView knobView = new KnobView(300);	
 	KnobModel knobModel = new KnobModel();
 	KnobController knobController =new KnobController(knobModel,knobView);
 		
@@ -18,7 +18,7 @@ public class Main{
     
 	
 	public Main(){
-		KnobView knobView2 = new KnobView();		
+		KnobView knobView2 = new KnobView(100);		
 		knobController.register(knobView2);
 		
 		frame.setLocationRelativeTo(null);

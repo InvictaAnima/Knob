@@ -33,27 +33,11 @@ public class KnobController {
 	
 	public void notifyObservers(){
 		for (KnobView kv : observers) {
-	        	kv.update(knobModel.getValue());
+	        	kv.update(knobModel.getValue(),knobModel.getAngle());
 	    }
-	}
-	
+	}	
+
 	//
-	
-	public boolean isMouseOnKnob(KnobView kv,int mouseX, int mouseY){
-				
-			int kX = kv.getX(); // knob X
-			int kY = kv.getY(); // knob Y
-			int kSize = kv.getKnobSize(); //knob Size
-			
-			
-			if(mouseX >= kX && mouseX <= kX+kSize &&
-			   mouseY >= kY && mouseY <= kY+kSize){
-				
-				return true;
-			} else {
-				return false;
-			}				
-	}
 
 	class KnobMouseWheelListener implements MouseWheelListener {
 
@@ -62,7 +46,7 @@ public class KnobController {
 			int rotation = e.getWheelRotation();
 			
 			for (KnobView kv : observers) {				
-				if(isMouseOnKnob(kv,e.getX(),e.getY())){
+				if(e.getComponent().equals(kv)){
 					knobModel.calculateByRotation(rotation);				
 					notifyObservers();
 				}
@@ -86,22 +70,17 @@ public class KnobController {
 
 		@Override
 		public void mousePressed(MouseEvent e){
-			int value = 0;
 			
-			for (KnobView kv : observers) {
-				kv.updateXY(e.getX(), e.getY());
-				int yV = kv.getCenterY();
-				int xV = kv.getCenterX();
-				double a = (double)(-1)*(e.getY()-yV)/(e.getX()-xV); //aX ratio
-				double angle = (Math.atan(a) + Math.PI/2)/Math.PI;
-				
-				value = (int)((-1)*angle*360);				
-			}
+			for (KnobView kv : observers) {										
+					if(e.getComponent().equals(kv)){
+						int yV = kv.getCenterY();
+						int xV = kv.getCenterX();
+					
+						knobModel.calculateFromMouseClick(xV,yV, e.getX(), e.getY());
+					}				
+			}			
 			
-			
-			knobModel.setValue(value);
-			notifyObservers();		
-			
+			notifyObservers();			
 		}
 
 		@Override
