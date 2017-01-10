@@ -36,6 +36,7 @@ public class KnobModel {
 			angle =  90 - (Math.atan(a) * 180 / Math.PI) + 180;
 		}
 		
+				
 		angle =(-1) * Math.ceil(angle);
 		value = (int)(angle/360 * maxValue);
 		

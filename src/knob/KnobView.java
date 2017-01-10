@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseWheelListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JComponent;
 
@@ -18,6 +20,9 @@ public class KnobView extends JComponent { //////////
 	
 	private int value;
 	private int angle;
+	
+	private int newValue;
+	private int newAngle;
 
 	public KnobView() {
 		super();
@@ -47,8 +52,60 @@ public class KnobView extends JComponent { //////////
 	
 	//Observer pattern
 	public void update(int value, int angle) {
-		setValue(value);
-		setAngle(angle);
+//		setValue(value);
+//		setAngle(angle);
+		setNewValue(value);
+		setNewAngle(angle);
+		
+		new Timer().schedule(new TimerTask(){
+		      @Override
+		      public void run(){
+		        if(updateValue()){
+		        	this.cancel();
+		        }
+		      }
+		    }, 0, 60);
+		
+		new Timer().schedule(new TimerTask(){
+		      @Override
+		      public void run(){
+		        if(updateAngle()){
+		        	this.cancel();
+		        }
+		        
+		      }
+		    }, 0, 20);
+	}
+	
+	public boolean updateValue(){
+		
+		if(value<newValue){
+			value++;	
+			repaint();
+			return false;
+		} else if(value>newValue){
+			value--;	
+			repaint();
+			return false;
+		}
+		
+		return true;
+				
+	}
+	
+	public boolean updateAngle(){
+		
+		if(angle<newAngle){
+			angle++;
+			repaint();
+			return false;
+		} else if(angle>newAngle){
+			angle--;
+			repaint();
+			return false;
+		}		
+			
+		return true;
 	}
 	
 	//
@@ -95,6 +152,14 @@ public class KnobView extends JComponent { //////////
 	
 	public int getKnobSize(){
 		return this.knobSize;
+	}
+
+	public void setNewValue(int newValue) {
+		this.newValue = newValue;
+	}
+
+	public void setNewAngle(int newAngle) {
+		this.newAngle = newAngle;
 	}
 	
 }
