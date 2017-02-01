@@ -24,11 +24,12 @@ public class KnobView extends JComponent { //////////
 	private int newValue;
 	private int newAngle;
 
-	public KnobView() {
+	private int maxValue;
+	public KnobView(int maxValue) {
 		super();
 	
 		knobSize=150;
-		
+		this.maxValue=maxValue;
 		Dimension d = new Dimension(knobSize, knobSize);
 		setMinimumSize(d);
 	    setPreferredSize(d);
@@ -37,11 +38,11 @@ public class KnobView extends JComponent { //////////
 	    requestFocus();	    
 	}
 	
-	public KnobView(int size){
+	public KnobView(int size,int maxValue){
 		super();	
 
 		this.knobSize=size;
-		
+		this.maxValue=maxValue;
 		Dimension d = new Dimension(knobSize, knobSize);
 		setMinimumSize(d);
 	    setPreferredSize(d);
@@ -57,6 +58,8 @@ public class KnobView extends JComponent { //////////
 		setNewValue(value);
 		setNewAngle(angle);
 		
+		
+		int ratio = 360/maxValue;
 		new Timer().schedule(new TimerTask(){
 		      @Override
 		      public void run(){
@@ -64,7 +67,7 @@ public class KnobView extends JComponent { //////////
 		        	this.cancel();
 		        }
 		      }
-		    }, 0, 60);
+		    }, 0, 20 * ratio);
 		
 		new Timer().schedule(new TimerTask(){
 		      @Override

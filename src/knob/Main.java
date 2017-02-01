@@ -8,26 +8,25 @@ import javax.swing.JFrame;
 	
 public class Main{	
 	
-	KnobView knobView = new KnobView(300);	
-	KnobModel knobModel = new KnobModel();
-	KnobController knobController =new KnobController(knobModel,knobView);
-		
-	
 	JFrame frame = new JFrame("Knob");
 	Container pane = frame.getContentPane();
     
+	Knob knob;
 	
 	public Main(){
-		KnobView knobView2 = new KnobView(100);		
-		knobController.register(knobView2);
+		knob = new Knob(200,150);
+		
+		KnobView kolejneKnobView = new KnobView(100);		
+		knob.registerView(kolejneKnobView);
 		
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		pane.setLayout(new BorderLayout()); 
-		pane.add(knobView2, BorderLayout.EAST);
-	    pane.add(knobView, BorderLayout.WEST);
-	    	    
+		
+	    pane.add(knob.getMainView(), BorderLayout.WEST);
+	    pane.add(kolejneKnobView, BorderLayout.EAST);    
+	    
 	    frame.pack();
 	    frame.setVisible(true);	    
 	}
