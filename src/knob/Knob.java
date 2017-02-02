@@ -1,10 +1,5 @@
 package knob;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
-import javax.swing.JComponent;
-
 public class Knob {
 	KnobController kc;
 	KnobModel km;

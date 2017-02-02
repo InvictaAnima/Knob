@@ -12,7 +12,7 @@ import javax.swing.JComponent;
 
 
 
-public class KnobView extends JComponent { //////////
+public class KnobView extends JComponent { 
 
 	private static final long serialVersionUID = 1L;
 	
@@ -53,8 +53,6 @@ public class KnobView extends JComponent { //////////
 	
 	//Observer pattern
 	public void update(int value, int angle) {
-//		setValue(value);
-//		setAngle(angle);
 		setNewValue(value);
 		setNewAngle(angle);
 		
@@ -110,9 +108,6 @@ public class KnobView extends JComponent { //////////
 			
 		return true;
 	}
-	
-	//
-
 	
 	@Override
 	public void paintComponent(Graphics g) {
